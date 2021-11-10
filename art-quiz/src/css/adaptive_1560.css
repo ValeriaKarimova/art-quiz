@@ -1,0 +1,33 @@
+@media (min-width: 1560px) {
+
+    header {
+        height: 20vh;
+        margin: 0;
+    }
+
+    .quizes {
+        flex-direction: row;
+        height: 70vh;
+    }
+
+    h2 {
+        position: static;
+        font: 700 30px 'PlayfairDisplay', serif;
+        padding-top: 20px;
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
