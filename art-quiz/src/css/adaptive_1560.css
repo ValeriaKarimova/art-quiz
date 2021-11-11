@@ -1,13 +1,12 @@
 @media (min-width: 1560px) {
 
     header {
-        height: 20vh;
+        height: 100px;
         margin: 0;
     }
 
     .quizes {
         flex-direction: row;
-        height: 70vh;
     }
 
     h2 {

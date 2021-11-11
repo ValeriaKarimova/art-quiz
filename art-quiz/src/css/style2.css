@@ -1,0 +1,77 @@
+.categories_settings {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.categories_settings div {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+}
+
+.categories_settings img {
+    width: 60px;
+}
+
+h1 {
+    font: 700 25px 'PlayfairDisplay', serif;
+    margin-top: 11px;
+    text-transform: uppercase;
+    color: #42313A;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.round {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #9F4636;
+    margin: 0 auto;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h4 {
+    color: #F1DCC9;
+    font-size: 150px;
+}
+
+.settings_btn:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: .5s;
+}
+
+.quiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.picture {
+    width: 800px;
+    background-color: red;
+    height: 400px;
+}
+
+.answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px 40px;
+    margin-top: 30px;
+}
+
+.answers div {
+    width: 280px;
+    height: 50px;
+    background-color: royalblue;
+}

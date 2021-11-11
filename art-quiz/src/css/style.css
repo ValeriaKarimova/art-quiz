@@ -1,5 +1,5 @@
 body {
-    background-color: #E2E8E4;
+    background-color: rgba(241,	220, 201, 0.4);
 }
 
 img {
@@ -8,16 +8,18 @@ img {
 
 a {
     text-decoration: none;
+    display: inline;
 }
 
 .container {
     width: 80%;
     margin: 0 auto;
     position: relative;
+    min-height: calc(100vh - 90px);
 }
 
 header {
-    height: 16%;
+    height: 70px;
     display: flex;
     justify-content: center;
     margin-top: 7%;
@@ -68,10 +70,20 @@ header {
     position: relative;
 }
 
+.pictures img:hover,
+.artists img:hover,
+.round:hover {
+    transform: rotate3d(0, 1, 0, 360deg);
+    transition: 1.1s;
+    cursor: pointer;
+}
+
 .artists img,
 .pictures img {
     min-width: 240px;
-    width: 80%;
+    max-width: 600px;
+    width: 70%;
+    border-radius: 50%;
 }
 
 .artists a,
@@ -93,19 +105,10 @@ h2 {
     padding-bottom: 10%;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+h2:hover {
+    transform: skew(10deg, 5deg);
+    background-color: rgba(110, 181, 192, 0.5);
+}
 
 footer {
     width: 100%;
@@ -113,6 +116,9 @@ footer {
     display: flex;
     justify-content: space-around;
     background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    position: absolute;
+    bottom: -85px;
 }
 
 .year {
