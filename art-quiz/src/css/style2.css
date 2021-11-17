@@ -14,6 +14,14 @@
     width: 60px;
 }
 
+.picture_question img {
+    border-radius: 20px;
+}
+
+.picture_question {
+    position: relative;
+}
+
 h1 {
     font: 700 25px 'PlayfairDisplay', serif;
     margin-top: 11px;
@@ -24,6 +32,7 @@ h1 {
 .categories {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .round {
@@ -36,11 +45,38 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.round img {
+    width: 100%;
+    border-radius: 50%;
+    
+}
+
+.overlay {
+    position: absolute;
+    background-color: rgba(128,	128, 128, 0.7);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.no_overlay {
+    background-color: transparent;
 }
 
 h4 {
-    color: #F1DCC9;
-    font-size: 150px;
+    color: rgba(241, 220, 201, 1);
+    font-size: 7rem;
+    padding-top: 33px;
+}
+
+.no_overlay h4 {
+    color: #9F4636;
+    font-size: 4rem;
+    padding-top: 57px;
 }
 
 .settings_btn:hover {
@@ -50,6 +86,7 @@ h4 {
 }
 
 .quiz {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,21 +94,50 @@ h4 {
     margin-top: 30px;
 }
 
-.picture {
-    width: 800px;
-    background-color: red;
-    height: 400px;
-}
 
 .answers {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px 40px;
+    grid-gap: 20px 30px;
     margin-top: 30px;
 }
 
 .answers div {
-    width: 280px;
+    max-width: 310px;
     height: 50px;
-    background-color: royalblue;
+    background-color: rgba(108, 45, 44, 0.5);
+    text-align: center;
+}
+
+h5 {
+    font: 400 23px "Oswald", sans-serif;
+    padding-top: 5px;
+    color: #42313A;
+}
+
+.pagination {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    justify-content: space-around;
+    z-index: 2;
+    bottom: 0;
+    background-color: rgba(241,	220, 201, 0.4);
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
+}
+
+.empty {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border:solid 2px #42313A;;
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
 }

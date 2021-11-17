@@ -53,15 +53,14 @@ header {
     background-color: #42313A;
 }
 
-.quizes {
+.quizes_kinds {
     display: flex;
     flex-direction: column;
     margin: 20px 0;
     gap: 2rem;
 }
 
-.pictures,
-.artists {
+.kind_item {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -70,24 +69,21 @@ header {
     position: relative;
 }
 
-.pictures img:hover,
-.artists img:hover,
+.kind_item img:hover,
 .round:hover {
     transform: rotate3d(0, 1, 0, 360deg);
     transition: 1.1s;
     cursor: pointer;
 }
 
-.artists img,
-.pictures img {
+.kind_item img {
     min-width: 240px;
     max-width: 600px;
     width: 70%;
     border-radius: 50%;
 }
 
-.artists a,
-.pictures a {
+.kind_item a {
     text-align: -webkit-center;
 }
 
