@@ -5,7 +5,8 @@
 
 //variables
 
-const settingsButton = document.querySelector('.settings');
+const settingsButton = document.querySelectorAll('.settings_btn');
+const settingsOverlay = document.querySelector('.settings_overlay');
 const bodyDiv = document.querySelector("body");
 const homeButton = document.querySelectorAll('.home');
 const mainPage = document.querySelector('.main');
@@ -16,7 +17,7 @@ const artists = document.querySelector('.artists');
 const pictures = document.querySelector('.pictures');
 const kindTemplate = '<div class="kind_item"><img src="{{image}}" alt="picture"><h2>{{title}}</h2></div>';
 const kindsRoot = document.querySelector('.quizes_kinds');
-const categoryTemplate = '<div class="round"><img src="{{image}}" alt="picture"><div class="overlay {{extra}}"><h4>{{title}}</h4></div></div>';
+const categoryTemplate = '<div class="round"><img src="{{image}}" alt="picture"><div class="overlay {{extra}}"><h4 class="show_questions">{{title}}</h4><div class="score_div"><h6>Score</h6></div></div></div>';
 const categoryRoot = document.querySelector('.categories');
 const quizTemplate = '<div class="picture_question"><img src="{{image}}" alt="picture">{{pagination}}</div><div class="answers">{{options}}</div>';
 const optionTemplate = '<div class="option" data-image-num={{imageNum}}><h5>{{title}}</h5></div>';
@@ -24,7 +25,9 @@ const quizRoot = document.querySelector('.quiz');
 const rightOverlayTemplate = '<div class="answer_overlay"><div class="basis"><div><img class="icon" src="images/other/true.png" alt="img"></div><div><img class="basis_img" src="{{img}}" alt="image"></div><div class="image_description"><p>{{title}}</p><p>{{name}}</p><p>{{year}}</p></div><div><button><span>next</span></button></div></div></div>';
 const falseOverlayTemplate = '<div class="answer_overlay"><div class="basis"><div><img class="icon" src="images/other/false.png" alt="img"></div><div><img class="basis_img" src="{{img}}" alt="image"></div><div class="image_description"><p>{{title}}</p><p>{{name}}</p><p>{{year}}</p></div><div><button><span>next</span></button></div></div></div>';
 const resultTemplate = '<div class="result_overlay"><div class="result_basis"><div class="results_description"><p>Congratulations!</p><p>Правильных ответов: {{result}}</p></div><div><img src="images/other/finish.png" alt="img"></div><div><button class="ok_button"><span>Ok</span></button></div></div></div>';
-
+const scorePageTemplate = '<div class="round"><div class="true_false"><img src={{true_false}} alt="icon"></div><img src="{{answerImage}}" alt="picture"></div>';
+const scorePageRoot = document.querySelector('.score_root');
+const scoresPage = document.querySelector('.scores_page');
 
 
 
@@ -54,6 +57,14 @@ for(let i = 0; i < 10; i++){
 for(let i of homeButton) {
   i.addEventListener('click', () => openPage(mainPage));
 }
+
+for(let i of settingsButton) {
+  i.addEventListener('click', function(){
+    settingsOverlay.classList.toggle('hide');
+  });
+}
+
+
 
 
 
@@ -126,6 +137,8 @@ function fillQuizCategory(kindData) {
   categoryRoot.innerHTML = "";
   answerIndex = 0;
   answerHistory = [];
+
+
   for(let groupData of groupsData) {
     let key = getKey(kindData, groupData);
     let roundResult = getCorrectAnswersCount(key);
@@ -137,14 +150,44 @@ function fillQuizCategory(kindData) {
       .replace('{{extra}}', isDone ? 'no_overlay' : "");
     const round = createElementFromHTML(groupHtml);
     categoryRoot.appendChild(round);
-    
-    round.addEventListener('click', () => {
+
+    const scoreStar = round.querySelector('.score_div');
+    scoreStar.addEventListener('click', () => fillScorePage(kindData, groupData));
+
+    const startQuiz = round.querySelector('.show_questions');   
+    startQuiz.addEventListener('click', () => {
       answerIndex = 0;
-      showQuestion(groupData, kindData)
+      showQuestion(groupData, kindData);
     })
   }
 
   openPage(artistsPage);
+}
+
+function fillScorePage(kindData, groupData) {
+  scorePageRoot.innerHTML = "";
+  let currentKey = getKey(kindData, groupData);
+  let keyArray = localStorage.getItem(currentKey);
+  let resultArray = JSON.parse(keyArray);
+  let imageAnswers = groupData.answers;
+
+  for(let item of imageAnswers) {
+    let scoreHtml;
+    let imageFactPath = `images/img/${item}.jpg`;
+    let index = imageAnswers.indexOf(item);
+    if(resultArray[index]) {
+      scoreHtml = scorePageTemplate.replace('{{answerImage}}', imageFactPath).replace('{{true_false}}', 'images/other/true.png');
+    } else {
+      scoreHtml = scorePageTemplate.replace('{{answerImage}}', imageFactPath).replace('{{true_false}}', 'images/other/false.png')
+    }
+    
+    
+    const round = createElementFromHTML(scoreHtml);
+    scorePageRoot.appendChild(round);
+    
+  } 
+
+  openPage(scoresPage);
 }
 
 function showQuestion(groupData, kindData) {

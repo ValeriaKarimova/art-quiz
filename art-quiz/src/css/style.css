@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(241,	220, 201, 0.4);
+    background-color: #EFEFEF;
 }
 
 img {
@@ -39,6 +39,7 @@ header {
 
 .main {
     height: 78%;
+    position: relative;
 }
 
 .settings {
@@ -69,8 +70,7 @@ header {
     position: relative;
 }
 
-.kind_item img:hover,
-.round:hover {
+.kind_item img:hover {
     transform: rotate3d(0, 1, 0, 360deg);
     transition: 1.1s;
     cursor: pointer;

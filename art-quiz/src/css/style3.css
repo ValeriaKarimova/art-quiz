@@ -122,3 +122,24 @@
     font: 400 30px 'Oswald', sans-serif;
     color: #543F3F;
 }
+
+.score_root {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.true_false {
+    right: 0%;
+    position: absolute;
+    bottom: 1%;
+    background-color: rgb(241,	220, 201);
+    border-radius: 50%;
+}
+
+.true_false img {
+    width: 70px;
+    height: 70px;
+    padding: 4px;
+}
