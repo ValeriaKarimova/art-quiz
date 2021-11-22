@@ -1,20 +1,46 @@
 @media (min-width: 540px) {
+  h2 {
+    font: 700 33px "PlayfairDisplay", serif;
+  }
 
-h2 {
-    font: 700 33px 'PlayfairDisplay', serif;
-}
+  .answers {
+    grid-template-columns: 1fr 1fr;
+  }
 
+  .image_description p {
+    font: 400 22px "Oswald", sans-serif;
+  }
 
+  .results_description p {
+    font: 400 28px "Oswald", sans-serif;
+  }
 
+  h1 {
+    font: 700 23px "PlayfairDisplay", serif;
+    margin-top: 16px;
+  }
 
+  .categories_settings img,
+  .settings_btn_main {
+    width: 65px;
+  }
 
+  .settings_root {
+    width: 70%;
+    height: 80%;
+  }
 
+  .settings_overlay {
+    top: 157px;
+  }
 
+  .volume_control,
+  .timer_control {
+    cursor: pointer;
+    width: 85px;
+  }
 
-
-
-
-
-
-
+  .volume_div {
+    width: 250px;
+  }
 }

@@ -1,27 +1,26 @@
 @media (min-width: 1240px) {
+  h2 {
+    position: static;
+    font: 700 40px "PlayfairDisplay", serif;
+    padding-top: 20px;
+  }
 
-    h2 {
-        position: static;
-        font: 700 40px 'PlayfairDisplay', serif;
-        padding-top: 20px;
-    }
+  .settings_overlay {
+    width: 100%;
+    height: 77%;
+    top: 220px;
+  }
 
-    .settings {
-        width: 9%;
-    }
+  .volume_control,
+  .timer_control {
+    width: 155px;
+  }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    }
+  .volume_div {
+    width: 335px;
+  }
+
+  input {
+    width: 160px;
+  }
+}

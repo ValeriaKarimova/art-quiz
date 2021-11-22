@@ -1,37 +1,45 @@
 @media (min-width: 960px) {
+  header {
+    height: 90px;
+    margin: 0;
+  }
 
-    header {
-        height: 90px;
-        margin: 0;
-    }
+  .quizes_kinds {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 
-    .quizes_kinds {
-        flex-direction: row;
-    }
+  h1 {
+    font: 700 36px "PlayfairDisplay", serif;
+    letter-spacing: 0.1em;
+  }
 
-    h2 {
-        position: static;
-        font: 700 30px 'PlayfairDisplay', serif;
-        padding-top: 20px;
-    }
+  h2 {
+    position: static;
+    font: 700 30px "PlayfairDisplay", serif;
+    padding-top: 20px;
+    padding-bottom: 23px;
+  }
 
-    .settings {
-        width: 10%;
-    }
+  .image_description p {
+    font: 400 31px "Oswald", sans-serif;
+  }
 
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    }
+  .categories_settings img,
+  .settings_btn {
+    width: 90px;
+  }
+
+  .settings_overlay {
+    top: 200px;
+  }
+
+  .volume_control,
+  .timer_control {
+    width: 100px;
+  }
+
+  .volume_div {
+    width: 270px;
+  }
+}
