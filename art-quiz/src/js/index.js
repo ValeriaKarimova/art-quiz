@@ -1,4 +1,3 @@
-//variables
 
 const settingsButton = document.querySelectorAll(".settings_btn");
 const settingsOverlay = document.querySelector(".settings_overlay");
@@ -42,7 +41,6 @@ let savedResults;
 let pagination = document.createElement("div");
 pagination.classList.add("pagination");
 
-//loops
 
 for (let i = 0; i < 10; i++) {
   const emptyCircle = document.createElement("div");
@@ -60,7 +58,6 @@ for (let elem of settingsButton) {
   });
 }
 
-//functions
 
 function openPage(pageElement) {
   if (pageElement == currentPage) return;
@@ -242,6 +239,9 @@ function showQuestion(groupData, kindData) {
     } else {
       paginationCircles[index].classList.add("red");
     }
+
+  // const paginationCircleColor = isCorrectAnswer ? "green" : " red";
+  //   paginationCircles[index].classList.add(paginationCircleColor);
   }
 
   const variants = document.querySelectorAll(".option");
@@ -358,7 +358,6 @@ function showResults(result, kindData) {
   });
 }
 
-//async functions
 
 async function getJsonData(path) {
   const response = await fetch(path);
