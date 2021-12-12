@@ -40,7 +40,7 @@ class Question {
 
     let factIndex = this.groupData.answers[this.answerIndex];
     let correctFact = this.dataSource.factsData[factIndex];
-    let options = this.getOptions(factIndex);
+    let options = this.receiveRandomOptions(factIndex);
     let quizOptionHTML = this.getOptionHtml(
       options,
       this.kindData.factFieldName
@@ -75,7 +75,7 @@ class Question {
     }
   }
 
-  getOptions(factIndex) {
+  receiveRandomOptions(factIndex) {
     let fact = this.dataSource.factsData[factIndex];
     let randomIndex1 = getUniqueIndex(this.dataSource.factsData, [fact.author]);
     let randomFact1 = this.dataSource.factsData[randomIndex1];
@@ -95,7 +95,7 @@ class Question {
     let randomFact3 = this.dataSource.factsData[randomIndex3];
     let factsArray = [fact, randomFact1, randomFact2, randomFact3];
 
-    shuffle(factsArray);
+    shuffleOptions(factsArray);
 
     return factsArray;
   }
@@ -123,8 +123,6 @@ class Question {
 
     let isCorrectAnswer =
       selectedOptionDiv.dataset.imageNum == correctFact.imageNum;
-
-    //
 
     this.optionClickHandler(isCorrectAnswer);
 

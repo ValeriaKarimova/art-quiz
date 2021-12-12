@@ -12,9 +12,8 @@ class Application {
     this.currentPage = mainPage;
 
     const homeButton = document.querySelectorAll(".home_btn");
-    for (let oneButton of homeButton) {
-      oneButton.addEventListener("click", () => this.openPage(".main"));
-    }
+
+    homeButton.forEach(button => button.addEventListener('click', () => this.openPage(".main")));
 
     const settingsButton = document.querySelectorAll(".settings_btn");
 
@@ -56,7 +55,7 @@ class Application {
   }
 
   showScores(kindData, groupData) {
-  let currentKey = this.dataSource.getKey(kindData, groupData);
+    let currentKey = this.dataSource.getKey(kindData, groupData);
     let keyArray = localStorage.getItem(currentKey);
     let resultArray = JSON.parse(keyArray);
     let imageAnswers = groupData.answers;

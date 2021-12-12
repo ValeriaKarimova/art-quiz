@@ -25,27 +25,23 @@ class ScoreView {
       let imageFactPath = `images/img/${item}.jpg`;
       let index = this.imageAnswers.indexOf(item);
 
+      let filterBG = '';
+
       if (this.resultArray[index]) {
-        scoreHtml = scorePageTemplate
+        filterBG = 'contain';
+      } else {
+        filterBG = 'contain; filter: grayscale(1)';
+      }
+
+      scoreHtml = scorePageTemplate
           .replace(
             "{{style}}",
-            `style="background-image: url(${imageFactPath}); background-size: contain"`
+            `style="background-image: url(${imageFactPath}); background-size: ${filterBG}"`
           )
           .replace("{{true_false}}", "images/other/true.png")
           .replace("{{title}}", selectedRound.author)
           .replace("{{name}}", selectedRound.name)
           .replace("{{year}}", selectedRound.year);
-      } else {
-        scoreHtml = scorePageTemplate
-          .replace(
-            "{{style}}",
-            `style="background-image: url(${imageFactPath}); background-size: contain; filter: grayscale(1)"`
-          )
-          .replace("{{true_false}}", "images/other/false.png")
-          .replace("{{title}}", selectedRound.author)
-          .replace("{{name}}", selectedRound.name)
-          .replace("{{year}}", selectedRound.year);
-      }
 
       const round = createElementFromHTML(scoreHtml);
       scorePageRoot.appendChild(round);
@@ -58,4 +54,4 @@ class ScoreView {
   }
 }
 
-export default ScoreView 
+export default ScoreView;

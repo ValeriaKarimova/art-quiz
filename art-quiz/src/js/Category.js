@@ -35,7 +35,7 @@ class Category {
 
       const startQuiz = round.querySelector(".show_questions");
       startQuiz.addEventListener("click", () => {
-          this.roundClickHandler(groupData, this.kindData)
+        this.roundClickHandler(groupData, this.kindData);
       });
     }
   }
@@ -49,4 +49,4 @@ class Category {
   }
 }
 
-export default Category
+export default Category;
