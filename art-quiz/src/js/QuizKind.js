@@ -10,7 +10,7 @@ class QuizKind {
 
   init() {
     const kindsRoot = document.querySelector(".quizes_kinds");
-    let kindHtml = this.kindTemplate
+    const kindHtml = this.kindTemplate
       .replace("{{image}}", this.kindData.image)
       .replace("{{title}}", this.kindData.title);
 

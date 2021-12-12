@@ -20,28 +20,27 @@ class ScoreView {
     scorePageRoot.innerHTML = "";
 
     for (let item of this.imageAnswers) {
-      let selectedRound = this.dataSource.factsData[item];
-      let scoreHtml;
-      let imageFactPath = `images/img/${item}.jpg`;
-      let index = this.imageAnswers.indexOf(item);
+      const selectedRound = this.dataSource.factsData[item];
+      const imageFactPath = `images/img/${item}.jpg`;
+      const index = this.imageAnswers.indexOf(item);
 
-      let filterBG = '';
+      let filterBG = "";
 
       if (this.resultArray[index]) {
-        filterBG = 'contain';
+        filterBG = "contain";
       } else {
-        filterBG = 'contain; filter: grayscale(1)';
+        filterBG = "contain; filter: grayscale(1)";
       }
 
-      scoreHtml = scorePageTemplate
-          .replace(
-            "{{style}}",
-            `style="background-image: url(${imageFactPath}); background-size: ${filterBG}"`
-          )
-          .replace("{{true_false}}", "images/other/true.png")
-          .replace("{{title}}", selectedRound.author)
-          .replace("{{name}}", selectedRound.name)
-          .replace("{{year}}", selectedRound.year);
+      const scoreHtml = scorePageTemplate
+        .replace(
+          "{{style}}",
+          `style="background-image: url(${imageFactPath}); background-size: ${filterBG}"`
+        )
+        .replace("{{true_false}}", "images/other/true.png")
+        .replace("{{title}}", selectedRound.author)
+        .replace("{{name}}", selectedRound.name)
+        .replace("{{year}}", selectedRound.year);
 
       const round = createElementFromHTML(scoreHtml);
       scorePageRoot.appendChild(round);

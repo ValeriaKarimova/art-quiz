@@ -27,7 +27,7 @@ class Question {
             {{options}}\
         </div>';
 
-    let pagination = document.createElement("div");
+    const pagination = document.createElement("div");
     pagination.classList.add("pagination");
 
     for (let i = 0; i < 10; i++) {
@@ -38,15 +38,15 @@ class Question {
     const quizRoot = document.querySelector(".quiz");
     quizRoot.innerHTML = "";
 
-    let factIndex = this.groupData.answers[this.answerIndex];
-    let correctFact = this.dataSource.factsData[factIndex];
-    let options = this.receiveRandomOptions(factIndex);
-    let quizOptionHTML = this.getOptionHtml(
+    const factIndex = this.groupData.answers[this.answerIndex];
+    const correctFact = this.dataSource.factsData[factIndex];
+    const options = this.receiveRandomOptions(factIndex);
+    const quizOptionHTML = this.getOptionHtml(
       options,
       this.kindData.factFieldName
     );
-    let imagePath = `images/img/${correctFact.imageNum}.jpg`;
-    let quizHTML = quizTemplate
+    const imagePath = `images/img/${correctFact.imageNum}.jpg`;
+    const quizHTML = quizTemplate
       .replace("{{image}}", imagePath)
       .replace("{{options}}", quizOptionHTML)
       .replace("{{pagination}}", pagination.outerHTML);
@@ -54,7 +54,7 @@ class Question {
     const oneQuestion = createElementFromHTML(quizHTML);
     quizRoot.appendChild(oneQuestion);
 
-    let paginationCircles = document.querySelectorAll(".empty");
+    const paginationCircles = document.querySelectorAll(".empty");
 
     for (let index = 0; index < this.answerHistory.length; index++) {
       let isCorrectAnswer = this.answerHistory[index];
@@ -76,24 +76,26 @@ class Question {
   }
 
   receiveRandomOptions(factIndex) {
-    let fact = this.dataSource.factsData[factIndex];
-    let randomIndex1 = getUniqueIndex(this.dataSource.factsData, [fact.author]);
-    let randomFact1 = this.dataSource.factsData[randomIndex1];
+    const fact = this.dataSource.factsData[factIndex];
+    const randomIndex1 = getUniqueIndex(this.dataSource.factsData, [
+      fact.author,
+    ]);
+    const randomFact1 = this.dataSource.factsData[randomIndex1];
 
-    let randomIndex2 = getUniqueIndex(this.dataSource.factsData, [
+    const randomIndex2 = getUniqueIndex(this.dataSource.factsData, [
       fact.author,
       randomFact1.author,
     ]);
 
-    let randomFact2 = this.dataSource.factsData[randomIndex2];
-    let randomIndex3 = getUniqueIndex(this.dataSource.factsData, [
+    const randomFact2 = this.dataSource.factsData[randomIndex2];
+    const randomIndex3 = getUniqueIndex(this.dataSource.factsData, [
       fact.author,
       randomFact1.author,
       randomFact2.author,
     ]);
 
-    let randomFact3 = this.dataSource.factsData[randomIndex3];
-    let factsArray = [fact, randomFact1, randomFact2, randomFact3];
+    const randomFact3 = this.dataSource.factsData[randomIndex3];
+    const factsArray = [fact, randomFact1, randomFact2, randomFact3];
 
     shuffleOptions(factsArray);
 
@@ -119,9 +121,9 @@ class Question {
   }
 
   handleVariantClick(selectedOptionDiv, correctFact, kindData, groupData) {
-    let paginationCircles = document.querySelectorAll(".empty");
+    const paginationCircles = document.querySelectorAll(".empty");
 
-    let isCorrectAnswer =
+    const isCorrectAnswer =
       selectedOptionDiv.dataset.imageNum == correctFact.imageNum;
 
     this.optionClickHandler(isCorrectAnswer);
@@ -188,15 +190,15 @@ class Question {
             <button><span>next</span></button></div></div>\
         </div>';
 
-    let imagePath = `images/img/${correctFact.imageNum}.jpg`;
-    let template = isCorrect ? rightOverlayTemplate : falseOverlayTemplate;
-    let overlayHtml = template
+    const imagePath = `images/img/${correctFact.imageNum}.jpg`;
+    const template = isCorrect ? rightOverlayTemplate : falseOverlayTemplate;
+    const overlayHtml = template
       .replace("{{img}}", imagePath)
       .replace("{{title}}", correctFact.author)
       .replace("{{name}}", correctFact.name)
       .replace("{{year}}", correctFact.year);
 
-    let rightOverlay = createElementFromHTML(overlayHtml);
+    const rightOverlay = createElementFromHTML(overlayHtml);
     const bodyDiv = document.querySelector("body");
     bodyDiv.appendChild(rightOverlay);
     const nextBtn = document.querySelector("button");

@@ -11,17 +11,17 @@ class Category {
     const categoryTemplate =
       '<div class="round"><img src="{{image}}" alt="picture"><div class="overlay {{extra}}"><h4 class="show_questions">{{title}}</h4><div class="score_div"><h6>Score</h6></div></div></div>';
 
-    let groupsData = this.kindData.groups;
+    const groupsData = this.kindData.groups;
     categoryRoot.innerHTML = "";
 
     for (let groupData of groupsData) {
-      let key = this.dataSource.getKey(this.kindData, groupData);
-      let roundResult = this.getCorrectAnswersCount(key);
-      let isDone = localStorage.getItem(key) !== null;
+      const key = this.dataSource.getKey(this.kindData, groupData);
+      const roundResult = this.getCorrectAnswersCount(key);
+      const isDone = localStorage.getItem(key) !== null;
 
-      let firstFact = this.dataSource.factsData[groupData.answers[0]];
-      let imageFactPath = `images/img/${firstFact.imageNum}.jpg`;
-      let groupHtml = categoryTemplate
+      const firstFact = this.dataSource.factsData[groupData.answers[0]];
+      const imageFactPath = `images/img/${firstFact.imageNum}.jpg`;
+      const groupHtml = categoryTemplate
         .replace("{{title}}", isDone ? `${roundResult}/10` : groupData.title)
         .replace("{{image}}", imageFactPath)
         .replace("{{extra}}", isDone ? "no_overlay" : "");
@@ -41,10 +41,10 @@ class Category {
   }
 
   getCorrectAnswersCount(key) {
-    let stringJson = localStorage.getItem(key);
+    const stringJson = localStorage.getItem(key);
     if (stringJson === null) return 0;
-    let resultArray = JSON.parse(stringJson);
-    let oneQuizCount = resultArray.reduce((b, a) => b + (a ? 1 : 0), 0);
+    const resultArray = JSON.parse(stringJson);
+    const oneQuizCount = resultArray.reduce((b, a) => b + (a ? 1 : 0), 0);
     return oneQuizCount;
   }
 }

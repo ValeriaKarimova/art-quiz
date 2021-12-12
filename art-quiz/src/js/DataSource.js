@@ -11,9 +11,9 @@ class DataSource {
   }
 
   getKey(kindData, groupData) {
-    let kindIndex = this.structureData.indexOf(kindData);
-    let groupIndex = kindData.groups.indexOf(groupData);
-    let key = `${kindIndex}_${groupIndex}`;
+    const kindIndex = this.structureData.indexOf(kindData);
+    const groupIndex = kindData.groups.indexOf(groupData);
+    const key = `${kindIndex}_${groupIndex}`;
 
     return key;
   }

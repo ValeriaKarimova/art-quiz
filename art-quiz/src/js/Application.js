@@ -13,7 +13,9 @@ class Application {
 
     const homeButton = document.querySelectorAll(".home_btn");
 
-    homeButton.forEach(button => button.addEventListener('click', () => this.openPage(".main")));
+    homeButton.forEach((button) =>
+      button.addEventListener("click", () => this.openPage(".main"))
+    );
 
     const settingsButton = document.querySelectorAll(".settings_btn");
 
@@ -32,7 +34,7 @@ class Application {
 
   showKinds() {
     for (let kindData of this.dataSource.structureData) {
-      let kind = new QuizKind(kindData, this.dataSource, (data) =>
+      const kind = new QuizKind(kindData, this.dataSource, (data) =>
         this.showCategory(data)
       );
       kind.init();
@@ -40,7 +42,7 @@ class Application {
   }
 
   showCategory(kindData) {
-    let category = new Category(
+    const category = new Category(
       kindData,
       this.dataSource,
       (kindData, groupData) => this.showScores(kindData, groupData),
@@ -55,12 +57,12 @@ class Application {
   }
 
   showScores(kindData, groupData) {
-    let currentKey = this.dataSource.getKey(kindData, groupData);
-    let keyArray = localStorage.getItem(currentKey);
-    let resultArray = JSON.parse(keyArray);
-    let imageAnswers = groupData.answers;
+    const currentKey = this.dataSource.getKey(kindData, groupData);
+    const keyArray = localStorage.getItem(currentKey);
+    const resultArray = JSON.parse(keyArray);
+    const imageAnswers = groupData.answers;
 
-    let scoreView = new ScoreView(imageAnswers, this.dataSource, resultArray);
+    const scoreView = new ScoreView(imageAnswers, this.dataSource, resultArray);
     scoreView.init();
 
     this.openPage(".scores_page");
@@ -83,7 +85,7 @@ class Application {
   }
 
   showQuestion(groupData, kindData) {
-    let question = new Question(
+    const question = new Question(
       groupData,
       kindData,
       this.dataSource,
@@ -118,8 +120,11 @@ class Application {
             <div><button class="ok_button"><span>Ok</span></button></div></div>\
         </div>';
 
-    let resultHtml = resultTemplate.replace("{{result}}", this.correctAnswers);
-    let resultOverlay = createElementFromHTML(resultHtml);
+    const resultHtml = resultTemplate.replace(
+      "{{result}}",
+      this.correctAnswers
+    );
+    const resultOverlay = createElementFromHTML(resultHtml);
     const bodyDiv = document.querySelector("body");
     bodyDiv.appendChild(resultOverlay);
     const okBtn = document.querySelector(".ok_button");
@@ -131,7 +136,7 @@ class Application {
   }
 
   saveQuizResults(kindData, groupData) {
-    let key = this.dataSource.getKey(kindData, groupData);
+    const key = this.dataSource.getKey(kindData, groupData);
     localStorage.setItem(key, JSON.stringify(this.answerHistory));
   }
 
