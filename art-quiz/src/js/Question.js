@@ -62,17 +62,17 @@ class Question {
       paginationCircles[index].classList.add(paginationCircleColor);
     }
 
-    const variants = document.querySelectorAll(".option");
-    for (let selectedOptionDiv of variants) {
-      selectedOptionDiv.addEventListener("click", () =>
+    const answerVariants = document.querySelectorAll(".option");
+    answerVariants.forEach((selectedVariant) => {
+      selectedVariant.addEventListener("click", () =>
         this.handleVariantClick(
-          selectedOptionDiv,
+          selectedVariant,
           correctFact,
           this.kindData,
           this.groupData
         )
       );
-    }
+    });
   }
 
   receiveRandomOptions(factIndex) {
@@ -127,34 +127,39 @@ class Question {
       selectedOptionDiv.dataset.imageNum == correctFact.imageNum;
 
     this.optionClickHandler(isCorrectAnswer);
+    const ANSWER_COLORS = { correct: "green", wrong: "red" };
 
     if (isCorrectAnswer) {
-      selectedOptionDiv.classList.add("green");
+      selectedOptionDiv.classList.add(`${ANSWER_COLORS.correct}`);
       setTimeout(
         () => this.showOverlay(correctFact, groupData, kindData, true),
         300
       );
     } else {
-      selectedOptionDiv.classList.add("red");
+      selectedOptionDiv.classList.add(`${ANSWER_COLORS.wrong}`);
       setTimeout(
         () => this.showOverlay(correctFact, groupData, kindData, false),
         300
       );
     }
 
-    if (isCorrectAnswer) {
-      paginationCircles[this.answerIndex].classList.add("green");
-    } else {
-      paginationCircles[this.answerIndex].classList.add("red");
-    }
+    isCorrectAnswer
+      ? paginationCircles[this.answerIndex].classList.add(
+          `${ANSWER_COLORS.correct}`
+        )
+      : paginationCircles[this.answerIndex].classList.add(
+          `${ANSWER_COLORS.wrong}`
+        );
   }
 
+  
   showOverlay(correctFact, groupData, kindData, isCorrect) {
-    const rightOverlayTemplate =
-      '<div class="answer_overlay">\
+    
+    function getOverlayTemplate(overlayImage) {
+      return `<div class="answer_overlay">\
                 <div class="basis">\
                     <div>\
-                        <img class="icon" src="images/other/true.png" alt="img">\
+                        <img class="icon" src="images/other/${overlayImage}" alt="img">\
                     </div>\
                 <div>\
                     <img class="basis_img" src="{{img}}" alt="image">\
@@ -170,28 +175,14 @@ class Question {
                     </button>\
                 </div>\
             </div>\
-        </div>';
+        </div>`;
+    }
 
-    const falseOverlayTemplate =
-      '<div class="answer_overlay">\
-            <div class="basis">\
-                <div>\
-                    <img class="icon" src="images/other/false.png" alt="img">\
-                </div>\
-            <div>\
-            <img class="basis_img" src="{{img}}" alt="image">\
-        </div>\
-        <div class="image_description">\
-            <p>{{title}}</p>\
-            <p>{{name}}</p>\
-            <p>{{year}}</p>\
-        </div>\
-        <div>\
-            <button><span>next</span></button></div></div>\
-        </div>';
+    const falseOverlayTemplate = getOverlayTemplate('false.png');
+    const trueOverlayTemplate = getOverlayTemplate('true.png')
 
     const imagePath = `images/img/${correctFact.imageNum}.jpg`;
-    const template = isCorrect ? rightOverlayTemplate : falseOverlayTemplate;
+    const template = isCorrect ? trueOverlayTemplate : falseOverlayTemplate;
     const overlayHtml = template
       .replace("{{img}}", imagePath)
       .replace("{{title}}", correctFact.author)

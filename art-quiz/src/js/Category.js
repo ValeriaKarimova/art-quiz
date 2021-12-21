@@ -42,7 +42,7 @@ class Category {
 
   getCorrectAnswersCount(key) {
     const stringJson = localStorage.getItem(key);
-    if (stringJson === null) return 0;
+    if (stringJson === null || stringJson === undefined) return 0;
     const resultArray = JSON.parse(stringJson);
     const oneQuizCount = resultArray.reduce((b, a) => b + (a ? 1 : 0), 0);
     return oneQuizCount;
